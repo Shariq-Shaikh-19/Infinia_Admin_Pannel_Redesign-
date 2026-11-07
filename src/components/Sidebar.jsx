@@ -1,121 +1,51 @@
-import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { RiDashboardFill } from "react-icons/ri";
-import { IoHome } from "react-icons/io5";
-import { LiaBlogSolid } from "react-icons/lia";
-import { Link } from "react-router-dom";
-import { SiAboutdotme } from "react-icons/si";
-import { TbBrandSafari } from "react-icons/tb";
-import { MdOutlineEventSeat } from "react-icons/md";
-import { AiOutlineFontSize } from "react-icons/ai";
-import { MdProductionQuantityLimits } from "react-icons/md";
-import { FaImage } from "react-icons/fa";
+import React from "react";
+import { 
+  FiLayout, 
+  FiHome, 
+  FiFileText, 
+  FiInfo, 
+  FiTag, 
+  FiCalendar, 
+  FiShoppingBag 
+} from "react-icons/fi";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const location = useLocation();
 
-  const toggleSidebar = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const menuItems = [
+    { name: "DASHBOARD", icon: FiLayout, path: "/dashboard" },
+    { name: "HOME", icon: FiHome, path: "/home" },
+    { name: "BLOG", icon: FiFileText, path: "/blog" },
+    { name: "ABOUT", icon: FiInfo, path: "/about" },
+    { name: "BRAND", icon: FiTag, path: "/brand" },
+    { name: "EVENTS", icon: FiCalendar, path: "/events" },
+    { name: "PRODUCTS", icon: FiShoppingBag, path: "/products" },
+  ];
 
   return (
-    <div
-      className={`h-[110vh] fixed mt-[100px] pt-5 transition-width duration-500 z-20 ${
-        isExpanded ? "w-[14%]" : "w-[5%]"
-      } bg-gray-100 shadow-lg`}
-    >
-      <div className="pl-4 flex flex-col justify-between h-full">
-        <div>
-          <Link to="/">
-            <div className="mt-4 flex items-center cursor-pointer w-full hover:bg-gray-200 p-2 rounded">
-              <RiDashboardFill size={20} />
-              {isExpanded && (
-                <h3 className="transition-all duration-500 text-lg font-bold ml-2">
-                  DASHBOARD
-                </h3>
-              )}
-            </div>
-          </Link>
+    <aside className="fixed left-0 top-20 h-[calc(100vh-5rem)] w-60 bg-gradient-to-b from-[#090042] via-[#0d0354] to-[#090042] backdrop-blur-md text-purple-100 border-r border-indigo-500/20 shadow-xl z-40 flex flex-col py-6 px-4">
+      <nav className="flex flex-col gap-2">
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = location.pathname === item.path;
 
-          <Link to="/home">
-            <div className="mt-4 flex items-center cursor-pointer w-full hover:bg-gray-200 p-2 rounded">
-              <IoHome size={20} />
-              {isExpanded && (
-                <h3 className="transition-all duration-500 text-lg font-bold ml-2">
-                  HOME
-                </h3>
-              )}
-            </div>
-          </Link>
-
-          <Link to="/blog">
-            <div className="mt-4 flex items-center cursor-pointer w-full hover:bg-gray-200 p-2 rounded">
-              <LiaBlogSolid size={20} />
-              {isExpanded && (
-                <h3 className="transition-all duration-500 text-lg font-bold ml-2">
-                  BLOG
-                </h3>
-              )}
-            </div>
-          </Link>
-
-          <Link to="/about">
-            <div className="mt-4 flex items-center cursor-pointer w-full hover:bg-gray-200 p-2 rounded">
-              <SiAboutdotme size={20} />
-              {isExpanded && (
-                <h3 className="transition-all duration-500 text-lg font-bold ml-2">
-                  ABOUT
-                </h3>
-              )}
-            </div>
-          </Link>
-
-          <Link to="/brand">
-            <div className="mt-4 flex items-center cursor-pointer w-full hover:bg-gray-200 p-2 rounded">
-              <TbBrandSafari size={20} />
-              {isExpanded && (
-                <h3 className="transition-all duration-500 text-lg font-bold ml-2">
-                  BRAND
-                </h3>
-              )}
-            </div>
-          </Link>
-
-          <Link to="/event">
-            <div className="mt-4 flex items-center cursor-pointer w-full hover:bg-gray-200 p-2 rounded">
-              <MdOutlineEventSeat size={20} />
-              {isExpanded && (
-                <h3 className="transition-all duration-500 text-lg font-bold ml-2">
-                  EVENTS
-                </h3>
-              )}
-            </div>
-          </Link>
-          <Link to="/product">
-            <div className="mt-4 flex items-center cursor-pointer w-full hover:bg-gray-200 p-2 rounded">
-              <MdProductionQuantityLimits size={20} />
-              {isExpanded && (
-                <h3 className="transition-all duration-500 text-lg font-bold ml-2">
-                  PRODUCTS
-                </h3>
-              )}
-            </div>
-          </Link>
-        </div>
-
-        <div
-          className={`absolute top-1/2 transform -translate-y-1/2 ${
-            isExpanded ? "left-[85%]" : "left-full"
-          } transition-left duration-500`}
-        >
-          <button
-            className="bg-gray-600 p-2 rounded-full focus:outline-none hover:bg-gray-500"
-            onClick={toggleSidebar}
-          >
-            {isExpanded ? <FaChevronLeft /> : <FaChevronRight />}
-          </button>
-        </div>
-      </div>
-    </div>
+          return (
+            <Link
+              key={item.name}
+              to={item.path}
+              className={`flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-semibold tracking-wider transition-all duration-200 ${
+                isActive
+                  ? "bg-purple-500/20 text-white border border-purple-400/30 shadow-md shadow-purple-900/30"
+                  : "text-purple-200 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              <Icon className={`text-lg ${isActive ? "text-purple-300" : "text-purple-400"}`} />
+              <span>{item.name}</span>
+            </Link>
+          );
+        })}
+      </nav>
+    </aside>
   );
 }

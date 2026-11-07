@@ -273,7 +273,6 @@ export default function ProductEdit() {
     image2: null,
     image3: null,
     image4: null,
-    pdffile: null,
   });
 
   const [editId, setEditId] = useState(null);
@@ -388,7 +387,6 @@ const uploadToCloudinary = async (file) => {
     setProductData({
       title: "",
       description: "",
-      pdffile: null,
       Pattern: "",
       Coverage: "",
       orderQantity: "",
