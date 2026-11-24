@@ -4,17 +4,17 @@ import Navbar from "./Navbar";
 import MainRoutes from "./MainRoutes";
 
 export default function Body({ onLogout }) {
-  // console.log('')
   return (
-    <div>
+    <div className="min-h-screen w-full">
       <Navbar onLogout={onLogout} />
-      <div className="flex">
+
+      <div className="flex w-full">
         <Sidebar />
-        <div className="mt-24 ml-[250px]">
+
+        <main className="flex-1 min-w-0 ml-[240px]">
           <MainRoutes />
-        </div>
+        </main>
       </div>
     </div>
   );
 }
-  

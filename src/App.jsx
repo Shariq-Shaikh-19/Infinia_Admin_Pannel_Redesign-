@@ -12,6 +12,7 @@ import { FiSun, FiMoon } from "react-icons/fi";
 
 import Body from "./components/Body";
 import InfiniaLogo from "./assets/InfiniaLogo.png";
+import bg_1 from "./assets/bg_1.webp";
 
 export default function App() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -135,11 +136,13 @@ export default function App() {
 
   return (
     <>
+      
       {isAuthenticated ? (
         <Body onLogout={handleLogout} />
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen items-center px-6 py-12 lg:px-16 bg-[#fffdfb] dark:bg-[#080f20] transition-colors duration-300 relative">
           {/* Theme Toggle */}
+
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="absolute top-6 right-6 rounded-full p-3 bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 transition z-50 cursor-pointer"

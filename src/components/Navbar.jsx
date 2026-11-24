@@ -14,7 +14,7 @@ export default function Navbar({ onLogout }) {
       </div>
 
       {/* Middle: Search Bar */}
-      <div className="relative w-96">
+      <div className="relative w-[550px]">
         <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[18px]" />
         <input
           type="text"
